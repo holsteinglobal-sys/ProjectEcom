@@ -2,17 +2,15 @@ import React from 'react'
 
 const Heading2 = () => {
   return (
-    <div>
-        <div className="max-w-6xl mx-auto px- py-20">
-  <h1 className="text-4xl font-bold text-gray-900 mb-6 text-left">
-    Lorem
-  </h1>
+    <div className="max-w-6xl mx-auto py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 text-left sm:text-center md:text-left">
+       Lorem
+      </h1>
 
-  <p className="text-lg leading-relaxed text-gray-700 text-justify max-w-4xl">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus tempore optio laboriosam quibusdam sapiente amet, enim hic. Eligendi facilis reiciendis, aliquam consectetur ullam fuga distinctio perspiciatis, blanditiis doloremque deleniti qui!
-    Accusamus consequuntur iste natus hic exercitationem expedita, dignissimos recusandae sapiente dolorum earum eius tenetur architecto eos facilis adipisci aliquid. Ullam, iure rerum ut dolores eligendi accusamus veniam inventore magni minus!
-  </p>
-</div>
+      <p className="text-base sm:text-lg md:text-lg leading-relaxed text-gray-700 text-justify sm:text-center md:text-justify max-w-6xl mx-auto">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Explicabo, exercitationem possimus velit pariatur aperiam repudiandae nostrum voluptate sunt corrupti doloremque cum dolorem quaerat voluptas, temporibus, molestiae ut ducimus nemo odio?
+        Commodi itaque accusantium nobis beatae ratione voluptate sed repellat, iure suscipit qui corporis deserunt culpa. Molestias impedit ducimus quidem maiores natus facere perferendis est. Obcaecati quisquam cum architecto asperiores explicabo?
+      </p>
     </div>
   )
 }
