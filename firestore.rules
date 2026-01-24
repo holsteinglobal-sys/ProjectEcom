@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    function isAdmin() {
+       // Check if user has admin role in their user doc or matches hardcoded email
+       return (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+               get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin")
+              || request.auth.token.email == "admin@gmail.com";
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read: if isSignedIn(); // Allow authenticated users to read profiles (e.g. for comments or admin)
+      allow create: if isSignedIn() && isOwner(userId);
+      allow update: if isOwner(userId) || isAdmin();
+    }
+
+    // Carts collection (Users access their own cart)
+    match /carts/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+      
+      match /items/{itemId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // Orders collection
+    match /orders/{orderId} {
+      // Users can see their own orders, Admins can see all
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      // Users can create orders for themselves
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      // Only admins can update orders (e.g. status)
+      allow update: if isAdmin();
+    }
+    
+    // Public collections (Products, Blogs)
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    match /blogs/{blogId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}

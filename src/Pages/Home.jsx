@@ -1,34 +1,41 @@
-import React from 'react'
+import HomeImage from "./HomeImage.jsx";
+import Heading from "../Component/Heading.jsx";
+import Card from "../Component/Card.jsx";
+import Heading2 from "../Component/Heading2.jsx";
+import Testimonial from "../Component/Testimonial.jsx";
+import { products } from "../Data/product.js";
+
+
+
 
 const Home = () => {
-  return (
-    <div className="hero bg-base-200 h-[747px]">
-  <div className="hero-content text-center">
-    <div className="max-w-md">
-     <div className="hover-3d">
-  {/* content */}
-  <figure className="max-w-100 rounded-2xl">
-    <img src="https://img.daisyui.com/images/stock/creditcard.webp" alt="3D card" />
-  </figure>
-  {/* 8 empty divs needed for the 3D effect */}
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
-      <p className="py-6">
-        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-        quasi. In deleniti eaque aut repudiandae et a id nisi.
-      </p>
-      <button className="btn btn-primary">Get Started</button>
-    </div>
-  </div>
-</div>
-  )
-}
 
-export default Home
+   
+  return (
+    <div className="bg-gradient-to-br from-indigo-50 via-white to-indigo-100">
+      {/* <Navbar /> */}
+      <HomeImage/>
+      <Heading />
+
+   
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 my-8 mx-auto max-w-6xl ">
+      {products.map((item) => (
+        <Card
+          key={item.id}
+          id={item.id}
+          image={item.image}
+          title={item.title}
+          description={item.description}
+        />
+      ))}
+      
+    </div>
+
+      
+      <Heading2 />
+      <Testimonial />
+    </div>
+  );
+};
+
+export default Home;

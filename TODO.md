@@ -1,0 +1,5 @@
+- [ ] Update AdminCarts.jsx to fetch carts using subcollection structure
+- [x] Modify useEffect to get users and their cart items
+- [ ] Update clearCart function to work with subcollections
+- [x] Update removeItem function to work with subcollections
+- [ ] Test the changes
